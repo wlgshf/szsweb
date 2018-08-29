@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { registerLocaleData } from '@angular/common';
@@ -12,6 +12,10 @@ import {AppRoutingModule} from './app-routing.module';
 import { IndexComponent } from './index/index.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+import { BorderComponent } from './border/border.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 
 registerLocaleData(zh);
 
@@ -20,7 +24,11 @@ registerLocaleData(zh);
     AppComponent,
     IndexComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    BorderComponent,
+    PageNotFoundComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +36,7 @@ registerLocaleData(zh);
     FormsModule,
     HttpClientModule,
     NgZorroAntdModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],

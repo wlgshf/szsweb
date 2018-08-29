@@ -1,3 +1,119 @@
-<p>
-  header works!
-</p>
+<!--菜单menu-->
+<ul nz-menu [nzMode]="'horizontal'" nzTheme='dark'>
+  <li nz-menu-item><i class="anticon anticon-mail"></i> Navigation One</li>
+  <li nz-menu-item><i class="anticon anticon-appstore"></i> Navigation Two</li>
+  <li nz-submenu>
+    <span title><i class="anticon anticon-setting"></i> Navigation Three - Submenu</span>
+    <ul>
+      <li nz-menu-group>
+        <span title>Item 1</span>
+        <ul>
+          <li nz-menu-item>Option 1</li>
+          <li nz-menu-item>Option 2</li>
+        </ul>
+      </li>
+      <li nz-menu-group>
+        <span title>Item 2</span>
+        <ul>
+          <li nz-menu-item>Option 3</li>
+          <li nz-menu-item>Option 4</li>
+          <li nz-submenu>
+            <span title>Sub Menu</span>
+            <ul>
+              <li nz-menu-item nzDisabled>Option 5</li>
+              <li nz-menu-item>Option 6</li>
+            </ul>
+          </li>
+          <li nz-submenu nzDisabled>
+            <span title>Disabled Sub Menu</span>
+            <ul>
+              <li nz-menu-item>Option 5</li>
+              <li nz-menu-item>Option 6</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li nz-menu-item>
+  <li nz-menu-item (click)="open()"><i class="anticon anticon-laptop"></i>Login in</li>
+</ul>
+
+<!--弹出登录框-->
+<div>
+  <nz-drawer [nzClosable]="false" [nzOffsetX]="childrenVisible ? 180 : 0" [nzWidth]="320" [nzVisible]="visible"
+             nzTitle="用户登录" (nzOnClose)="close()">
+    <!--<form nz-form>-->
+    <!--<div nz-row>-->
+    <!--<div nz-col nzSpan="24">-->
+    <!--<nz-form-item>-->
+    <!--<nz-form-label>Name</nz-form-label>-->
+    <!--<nz-form-control>-->
+    <!--<input nz-input placeholder="please enter name">-->
+    <!--</nz-form-control>-->
+    <!--</nz-form-item>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div nz-row>-->
+    <!--<div nz-col nzSpan="24">-->
+    <!--<nz-form-item>-->
+    <!--<nz-form-label>Password</nz-form-label>-->
+    <!--<nz-form-control>-->
+    <!--<input nz-input placeholder="please enter Password">-->
+    <!--&lt;!&ndash;<nz-tag>potato</nz-tag>&ndash;&gt;-->
+    <!--&lt;!&ndash;<nz-tag>eggplant</nz-tag>&ndash;&gt;-->
+    <!--&lt;!&ndash;<nz-tag (click)="openChildren()">+</nz-tag>&ndash;&gt;-->
+    <!--</nz-form-control>-->
+    <!--</nz-form-item>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</form>-->
+    <!--<div class="footer">-->
+    <!--<button type="button" (click)="close()" class="ant-btn" style="margin-right: 8px;"><span>Cancel</span></button>-->
+    <!--<button type="button" (click)="close()" class="ant-btn ant-btn-primary"><span>Submit</span></button>-->
+    <!--</div>-->
+    <!--<nz-drawer [nzClosable]="false" [nzVisible]="childrenVisible" nzTitle="Food" (nzOnClose)="closeChildren()">-->
+    <!--<nz-list [nzDataSource]="vegetables" [nzRenderItem]="item">-->
+    <!--<ng-template #item let-item>-->
+    <!--<nz-list-item [nzContent]="item"></nz-list-item>-->
+    <!--</ng-template>-->
+    <!--</nz-list>-->
+    <!--</nz-drawer>-->
+
+
+    <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+      <nz-form-item>
+        <nz-form-control>
+          <nz-input-group nzPrefixIcon="anticon anticon-user">
+            <input type="text" nz-input formControlName="userName" placeholder="Username">
+          </nz-input-group>
+          <nz-form-explain *ngIf="validateForm.get('userName').dirty && validateForm.get('userName').errors">Please
+            input your username!
+          </nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <nz-input-group nzPrefixIcon="anticon anticon-lock">
+            <input type="password" nz-input formControlName="password" placeholder="Password">
+          </nz-input-group>
+          <nz-form-explain *ngIf="validateForm.get('password').dirty && validateForm.get('password').errors">Please
+            input your Password!
+          </nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <button nz-button class="login-form-button" [nzType]="'primary'">Log in</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+
+    <div style="height: 30px;"></div>
+    <nz-divider nzText="其他登录方式"></nz-divider>
+    <div class="qrcode">
+      <img style="width: 200px; height: 200px;" src="https://byx-cpd.oss-cn-hangzhou.aliyuncs.com/wcp/login_wechat.png" alt="">
+    </div>
+    <p style="text-align: center">微信扫码授权登录</p>
+  </nz-drawer>
+</div>
