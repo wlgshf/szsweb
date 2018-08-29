@@ -1,0 +1,21 @@
+.border{
+  /*border: 1px solid red;*/
+  height: 94vh;
+  width: 100%;
+}
+.menu{
+  position: fixed;
+  top:30px;
+  right: 80px;
+}
+[nz-carousel-content] {
+  text-align: center;
+  height: 94vh;
+  width: 100%;
+  background: #364d79;
+  color: #fff;
+}
+
+h3 {
+  color: #fff;
+}

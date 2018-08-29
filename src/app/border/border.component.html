@@ -1,0 +1,11 @@
+<!--轮播-->
+<div class="border">
+  <nz-carousel nzAutoPlay nzAutoPlaySpeed="8000" [nzEffect]="'fade'">
+    <div nz-carousel-content *ngFor="let index of array"><h3>{{index}}</h3></div>
+  </nz-carousel>
+</div>
+
+<!--菜单组件-->
+<div class="menu">
+  <app-header></app-header>
+</div>
