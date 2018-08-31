@@ -43,43 +43,6 @@
 <div>
   <nz-drawer [nzClosable]="false" [nzOffsetX]="childrenVisible ? 180 : 0" [nzWidth]="320" [nzVisible]="visible"
              nzTitle="用户登录" (nzOnClose)="close()">
-    <!--<form nz-form>-->
-    <!--<div nz-row>-->
-    <!--<div nz-col nzSpan="24">-->
-    <!--<nz-form-item>-->
-    <!--<nz-form-label>Name</nz-form-label>-->
-    <!--<nz-form-control>-->
-    <!--<input nz-input placeholder="please enter name">-->
-    <!--</nz-form-control>-->
-    <!--</nz-form-item>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div nz-row>-->
-    <!--<div nz-col nzSpan="24">-->
-    <!--<nz-form-item>-->
-    <!--<nz-form-label>Password</nz-form-label>-->
-    <!--<nz-form-control>-->
-    <!--<input nz-input placeholder="please enter Password">-->
-    <!--&lt;!&ndash;<nz-tag>potato</nz-tag>&ndash;&gt;-->
-    <!--&lt;!&ndash;<nz-tag>eggplant</nz-tag>&ndash;&gt;-->
-    <!--&lt;!&ndash;<nz-tag (click)="openChildren()">+</nz-tag>&ndash;&gt;-->
-    <!--</nz-form-control>-->
-    <!--</nz-form-item>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</form>-->
-    <!--<div class="footer">-->
-    <!--<button type="button" (click)="close()" class="ant-btn" style="margin-right: 8px;"><span>Cancel</span></button>-->
-    <!--<button type="button" (click)="close()" class="ant-btn ant-btn-primary"><span>Submit</span></button>-->
-    <!--</div>-->
-    <!--<nz-drawer [nzClosable]="false" [nzVisible]="childrenVisible" nzTitle="Food" (nzOnClose)="closeChildren()">-->
-    <!--<nz-list [nzDataSource]="vegetables" [nzRenderItem]="item">-->
-    <!--<ng-template #item let-item>-->
-    <!--<nz-list-item [nzContent]="item"></nz-list-item>-->
-    <!--</ng-template>-->
-    <!--</nz-list>-->
-    <!--</nz-drawer>-->
-
 
     <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
       <nz-form-item>
@@ -105,14 +68,62 @@
       <nz-form-item>
         <nz-form-control>
           <button nz-button class="login-form-button" [nzType]="'primary'">Log in</button>
+          Or
+          <a (click)="openChildren()">register now!</a>
         </nz-form-control>
       </nz-form-item>
     </form>
 
+    <!--弹出新用户注册页面-->
+    <nz-drawer [nzClosable]="false" [nzVisible]="childrenVisible" [nzWidth]="320" nzTitle="新用户注册"
+               (nzOnClose)="closeChildren()">
+      <form nz-form [formGroup]="validateForm2" class="login-form" (ngSubmit)="submitForm2()">
+        <nz-form-item>
+          <nz-form-control>
+            <nz-input-group nzPrefixIcon="anticon anticon-user">
+              <input type="text" nz-input formControlName="userName" placeholder="Username">
+            </nz-input-group>
+            <nz-form-explain *ngIf="validateForm2.get('userName').dirty && validateForm2.get('userName').errors">Please
+              input your username!
+            </nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control>
+            <div nz-row [nzGutter]="8">
+              <div nz-col [nzSpan]="12">
+                <nz-input-group nzPrefixIcon="anticon anticon-lock">
+
+                  <input nz-input formControlName="captcha" id="captcha">
+                </nz-input-group>
+              </div>
+              <div nz-col [nzSpan]="12">
+                <button nz-button (click)="getCaptcha($event)">获取验证码</button>
+              </div>
+            </div>
+
+            <nz-form-explain *ngIf="validateForm2.get('captcha').dirty && validateForm2.get('captcha').errors">Please
+              input your username!
+            </nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+
+
+        <nz-form-item>
+          <nz-form-control>
+            <button nz-button class="login-form-button" [nzType]="'primary'">Register</button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+
+    </nz-drawer>
+
     <div style="height: 30px;"></div>
     <nz-divider nzText="其他登录方式"></nz-divider>
     <div class="qrcode">
-      <img style="width: 200px; height: 200px;" src="https://byx-cpd.oss-cn-hangzhou.aliyuncs.com/wcp/login_wechat.png" alt="">
+      <img style="width: 200px; height: 200px;" src="https://byx-cpd.oss-cn-hangzhou.aliyuncs.com/wcp/login_wechat.png"
+           alt="">
     </div>
     <p style="text-align: center">微信扫码授权登录</p>
   </nz-drawer>

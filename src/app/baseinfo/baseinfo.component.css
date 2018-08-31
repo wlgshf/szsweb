@@ -1,0 +1,9 @@
+.grid-config {
+  background: #00A0E9;
+  height: 120px;
+  width: 100%;
+}
+
+.grid-config:hover {
+  cursor: pointer
+}
